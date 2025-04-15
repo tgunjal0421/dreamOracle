@@ -134,7 +134,7 @@
 }
 
 .cl-card {
-  background: transparent !important;
+  background: rgb(205, 205, 205) !important;
   border: none !important;
 }
 
@@ -148,24 +148,25 @@
 }
 
 .cl-formFieldInput {
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  color: white !important;
+  background: rgba(11, 10, 10, 0.05) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  color: rgb(0, 0, 0) !important;
   backdrop-filter: blur(5px) !important;
 }
 
 .cl-formFieldLabel {
-  color: rgba(255, 255, 255, 0.8) !important;
+  color: rgba(0, 0, 0, 0.8) !important;
 }
 
 .cl-footerActionLink {
-  color: #00ff88 !important;
+  color: #0e6054 !important;
 }
 
 .cl-dividerText {
-  color: rgba(255, 255, 255, 0.6) !important;
+  color: rgba(10, 0, 0, 0.6) !important;
 }
 
 .cl-dividerLine {
-  background: rgba(255, 255, 255, 0.1) !important;
+  background: rgba(0, 0, 0, 0.1) !important;
+  height: 1px !important;
 }

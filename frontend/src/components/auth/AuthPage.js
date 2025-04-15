@@ -17,7 +17,7 @@ const AuthPage = () => {
           </SignInButton>
         </div>
         <div className="auth-footer">
-          <p>Welcome, to Dream Oracle</p>
+          <p>Welcome, to Dream Oracle !</p>
         </div>
       </div>
       <div className="auth-background">
