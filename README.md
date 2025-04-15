@@ -43,3 +43,4 @@ DreamOracle is a web-based platform that interprets user-submitted dreams using 
    - Dream Interpretation Page with History.
    - User Controls Page.
 
+© 2025 DreamOracle, All rights reserved.
