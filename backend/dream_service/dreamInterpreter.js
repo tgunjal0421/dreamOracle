@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const tokenizer = new natural.WordTokenizer();
-const csvPath = path.join(__dirname, 'https://drive.google.com/file/d/1IQ12eZ97LmN1V2GDOP64wMXEfTQCB0ab/view?usp=sharing');
+const csvPath = path.join(__dirname, 'https://drive.google.com/uc?export=download&id=1IQ12eZ97LmN1V2GDOP64wMXEfTQCB0ab');
 
 // Store interpretations in memory for faster lookup
 let dreamSymbols = new Map();
