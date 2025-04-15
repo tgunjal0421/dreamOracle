@@ -1,0 +1,162 @@
+.auth-page {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #0c0c0c;
+}
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  color: white;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-header h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #00ff88 0%, #4a90e2 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.auth-header p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 500px;
+}
+
+.auth-box {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.auth-footer {
+  margin-top: 2rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+.auth-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.gradient-sphere {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+.gradient-sphere-1 {
+  background: radial-gradient(circle, rgba(0, 255, 136, 0.2) 0%, rgba(0, 255, 136, 0) 70%);
+  width: 50vw;
+  height: 50vw;
+  top: -25vw;
+  right: -25vw;
+}
+
+.gradient-sphere-2 {
+  background: radial-gradient(circle, rgba(74, 144, 226, 0.2) 0%, rgba(74, 144, 226, 0) 70%);
+  width: 60vw;
+  height: 60vw;
+  bottom: -30vw;
+  left: -30vw;
+}
+
+.gradient-sphere-3 {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+  width: 40vw;
+  height: 40vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Clerk UI Customization */
+.sign-in-button {
+  background: linear-gradient(90deg, #00ff88 0%, #4a90e2 100%) !important;
+  color: white !important;
+  border: none !important;
+  padding: 12px 24px !important;
+  font-size: 1.1rem !important;
+  font-weight: 500 !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: opacity 0.3s ease !important;
+  width: 100% !important;
+  max-width: 300px !important;
+  text-align: center !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+.sign-in-button:hover {
+  opacity: 0.9 !important;
+}
+
+.cl-rootBox {
+  width: 100%;
+  max-width: 100% !important;
+}
+
+.cl-card {
+  background: transparent !important;
+  border: none !important;
+}
+
+.cl-formButtonPrimary {
+  background: linear-gradient(90deg, #00ff88 0%, #4a90e2 100%) !important;
+  transition: opacity 0.3s ease !important;
+}
+
+.cl-formButtonPrimary:hover {
+  opacity: 0.9 !important;
+}
+
+.cl-formFieldInput {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+  backdrop-filter: blur(5px) !important;
+}
+
+.cl-formFieldLabel {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.cl-footerActionLink {
+  color: #00ff88 !important;
+}
+
+.cl-dividerText {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.cl-dividerLine {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
