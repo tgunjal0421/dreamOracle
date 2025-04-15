@@ -30,7 +30,7 @@ const DreamsPage = () => {
     try {
       const token = await getToken();
       console.log('Fetching dreams with token...');
-      const res = await fetch('http://localhost:5002/api/dream/history', {
+      const res = await fetch('https://dream-oracle-server.vercel.app/api/dream/history', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
