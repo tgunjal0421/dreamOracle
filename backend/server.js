@@ -16,8 +16,23 @@ const port = process.env.PORT || 5002;
 const clerk = new Clerk({ secretKey: process.env.CLERK_SECRET_KEY });
 
 // Enable CORS for all routes
+const allowedOrigins = [
+  'http://localhost:3001',
+  'http://localhost:3000',
+  process.env.VERCEL_URL // Your Vercel frontend URL
+];
+
 app.use(cors({
-  origin: 'http://localhost:3001',
+  origin: function(origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
