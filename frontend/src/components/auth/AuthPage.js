@@ -4,6 +4,7 @@ import './AuthPage.css';
 
 const AuthPage = () => {
   return (
+    <>
     <div className="auth-page">
       <div className="auth-container">
         <div className="auth-header">
@@ -16,7 +17,7 @@ const AuthPage = () => {
           </SignInButton>
         </div>
         <div className="auth-footer">
-          <p>Powered by OpenAI & Neural Networks</p>
+          <p>Welcome, to Dream Oracle</p>
         </div>
       </div>
       <div className="auth-background">
@@ -25,6 +26,10 @@ const AuthPage = () => {
         <div className="gradient-sphere gradient-sphere-3"></div>
       </div>
     </div>
+    <footer className="page-footer">
+        <p>&copy; 2025 DreamOracle. All rights reserved.</p>
+      </footer>
+    </>
   );
 };
 

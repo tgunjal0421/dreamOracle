@@ -56,7 +56,6 @@
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.9rem;
 }
-
 .auth-background {
   position: fixed;
   top: 0;
@@ -95,6 +94,16 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.page-footer {
+  text-align: center;
+  padding: 10px 0;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
 }
 
 /* Clerk UI Customization */
