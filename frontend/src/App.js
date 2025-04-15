@@ -30,7 +30,7 @@ const DreamsPage = () => {
     try {
       const token = await getToken();
       console.log('Fetching dreams with token...');
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/dream/history`, {
+      const res = await fetch('http://localhost:5002/api/dream/history', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -44,15 +44,10 @@ const DreamsPage = () => {
 
       const data = await res.json();
       console.log('Received dreams:', data);
-      if (Array.isArray(data.dreams)) {
-        setPastDreams(data.dreams);
-      } else {
-        console.error('Unexpected data format:', data);
-        throw new Error('Invalid data format received from server');
-      }
+      setPastDreams(data.dreams || []);
     } catch (err) {
       console.error('Error fetching dreams:', err);
-      setError(err.message || 'Failed to fetch dream history');
+      setError('Failed to fetch dream history');
     }
   };
 
@@ -63,7 +58,7 @@ const DreamsPage = () => {
       const token = await getToken();
       console.log('Deleting dream with id:', id);
       
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/dream/${id}`, {
+      const res = await fetch(`http://localhost:5002/api/dream/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -104,7 +99,7 @@ const DreamsPage = () => {
       const token = await getToken();
       console.log('Submitting dream for interpretation...');
       
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/dream/interpret`, {
+      const response = await fetch('http://localhost:5002/api/dream/interpret', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -113,18 +108,22 @@ const DreamsPage = () => {
         body: JSON.stringify({ dream_text: trimmedDream })
       });
 
-      const data = await res.json();
-      
-      if (!res.ok) {
+      const data = await response.json();
+      console.log('Received response:', data);
+
+      if (!response.ok) {
         throw new Error(data.error || 'Failed to interpret dream');
       }
 
       setInterpretation(data.interpretation);
-      setDream('');
-      await fetchPastDreams(); // Refresh the dreams list after successful interpretation
+      // Don't clear the dream text immediately so user can see what they submitted
+      setTimeout(() => setDream(''), 2000);
+      
+      // Refresh dream history
+      await fetchPastDreams();
     } catch (err) {
-      setError(err.message || 'Failed to interpret dream');
       console.error('Interpretation error:', err);
+      setError(err.message || 'Failed to interpret dream. Please try again.');
     } finally {
       setIsLoading(false);
     }
