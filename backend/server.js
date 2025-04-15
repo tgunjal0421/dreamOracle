@@ -6,6 +6,8 @@ import { connectDB } from './config/database.js';
 import { interpretRoutes } from './routes/interpret.js';
 import { dreamRoutes } from './routes/dreamRoutes.js';
 
+dotenv.config();
+
 // Initialize express app
 const app = express();
 const port = process.env.PORT || 5002;
@@ -37,18 +39,13 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
-const startServer = async () => {
-  try {
-    // Connect to MongoDB
-    await connectDB();
-    
-    app.listen(port, () => {
-      console.log(`Server is running on port ${port}`);
-    });
-  } catch (error) {
-    console.error('Failed to start server:', error);
-    process.exit(1);
-  }
-};
+const ready = connectDB().then(() => {
+  console.log('Database connected');
+}).catch((error) => {
+  console.error('Failed to connect to DB:', error);
+});
 
-startServer();
+export default async function handler(req, res) {
+  await ready;
+  app(req, res);
+}
