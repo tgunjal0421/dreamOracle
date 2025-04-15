@@ -45,6 +45,14 @@ const ready = connectDB().then(() => {
   console.error('Failed to connect to DB:', error);
 });
 
+if (process.env.NODE_ENV !== 'production') {
+  ready.then(() => {
+    app.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
+    });
+  });
+}
+
 export default async function handler(req, res) {
   await ready;
   app(req, res);
