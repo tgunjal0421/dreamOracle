@@ -8,7 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const tokenizer = new natural.WordTokenizer();
-const csvPath = path.join(__dirname, 'https://github.com/tgunjal0421/dreamOracle/blob/main/backend/dream_service/dreams_interpretations.csv');
+const csvPath = path.join(__dirname, 'https://drive.google.com/file/d/1IQ12eZ97LmN1V2GDOP64wMXEfTQCB0ab/view?usp=sharing');
 
 // Store interpretations in memory for faster lookup
 let dreamSymbols = new Map();
