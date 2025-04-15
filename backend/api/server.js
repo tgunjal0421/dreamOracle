@@ -2,9 +2,9 @@ import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 import { Clerk } from '@clerk/clerk-sdk-node';
-import { connectDB } from './config/database.js';
-import { interpretRoutes } from './routes/interpret.js';
-import { dreamRoutes } from './routes/dreamRoutes.js';
+import { connectDB } from '../config/database.js';
+import { interpretRoutes } from '../routes/interpret.js';
+import { dreamRoutes } from '../routes/dreamRoutes.js';
 
 dotenv.config();
 
