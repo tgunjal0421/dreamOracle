@@ -19,7 +19,7 @@ const clerk = new Clerk({ secretKey: process.env.CLERK_SECRET_KEY });
 const allowedOrigins = [
   'http://localhost:3001',
   'http://localhost:3000',
-  process.env.VERCEL_URL // Your Vercel frontend URL
+  'https://dream-oracle-client.vercel.app' // Your Vercel frontend URL
 ];
 
 app.use(cors({
