@@ -18,6 +18,7 @@ const DreamsPage = () => {
   const [error, setError] = useState('');
   const [pastDreams, setPastDreams] = useState([]);
   const [deleteModal, setDeleteModal] = useState({ isOpen: false, dreamId: null });
+  const API_BASE_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     if (user) {
@@ -30,7 +31,7 @@ const DreamsPage = () => {
     try {
       const token = await getToken();
       console.log('Fetching dreams with token...');
-      const res = await fetch('http://localhost:5002/api/dream/history', {
+      const res = await fetch(`${API_BASE_URL}/api/dream/history`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -58,7 +59,7 @@ const DreamsPage = () => {
       const token = await getToken();
       console.log('Deleting dream with id:', id);
       
-      const res = await fetch(`http://localhost:5002/api/dream/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/dream/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -99,7 +100,7 @@ const DreamsPage = () => {
       const token = await getToken();
       console.log('Submitting dream for interpretation...');
       
-      const response = await fetch('http://localhost:5002/api/dream/interpret', {
+      const response = await fetch(`${API_BASE_URL}/api/dream/interpret`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
