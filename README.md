@@ -28,7 +28,7 @@ DreamOracle is a web-based platform that interprets user-submitted dreams using 
 ## 🔗 Live Links
 
 - Frontend: [https://dream-oracle-client.vercel.app/](https://dream-oracle-client.vercel.app/)
-- Backend: [https://dream-oracle-server.vercel.app/](https://dream-oracle-server.vercel.app/)
+- Backend: [https://dreamoracle.onrender.com](https://dreamoracle.onrender.com)
 
 ---
 
