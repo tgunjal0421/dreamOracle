@@ -7,6 +7,7 @@ import DreamForm from './components/dreams/DreamForm';
 import DreamList from './components/dreams/DreamList';
 import Modal from './components/common/Modal';
 import Settings from './pages/Settings';
+import LoadingScreen from './components/LoadingScreen';
 import './App.css';
 
 const DreamsPage = () => {
@@ -14,19 +15,26 @@ const DreamsPage = () => {
   const { getToken } = useAuth();
   const [dream, setDream] = useState('');
   const [interpretation, setInterpretation] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [pastDreams, setPastDreams] = useState([]);
   const [deleteModal, setDeleteModal] = useState({ isOpen: false, dreamId: null });
+  
   const API_BASE_URL = process.env.REACT_APP_API_URL?.replace(/\/+$/, ''); // remove trailing slash
   console.log("Using API:", process.env.REACT_APP_API_URL);
 
 
   useEffect(() => {
+
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 4000); // Adjust the duration as needed
+
     if (user) {
       console.log('Fetching past dreams...');
       fetchPastDreams();
     }
+    return () => clearTimeout(timer);
   }, [user]);
 
   const fetchPastDreams = async () => {
@@ -131,6 +139,10 @@ const DreamsPage = () => {
       setIsLoading(false);
     }
   };
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <div className="App">
