@@ -18,7 +18,9 @@ const DreamsPage = () => {
   const [error, setError] = useState('');
   const [pastDreams, setPastDreams] = useState([]);
   const [deleteModal, setDeleteModal] = useState({ isOpen: false, dreamId: null });
-  const API_BASE_URL = process.env.REACT_APP_API_URL;
+  const API_BASE_URL = process.env.REACT_APP_API_URL?.replace(/\/+$/, ''); // remove trailing slash
+  console.log("Using API:", process.env.REACT_APP_API_URL);
+
 
   useEffect(() => {
     if (user) {
