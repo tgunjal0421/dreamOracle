@@ -19,8 +19,8 @@ const clerk = new Clerk({ secretKey: process.env.CLERK_SECRET_KEY });
 const allowedOrigins = [
   'http://localhost:3001',
   'http://localhost:3000',
-  'https://dream-oracle-client.vercel.app/',
-  'https://dream-oracle-client-git-main-tgunjal0421s-projects.vercel.app/'
+  'https://dream-oracle-client.vercel.app',
+  'https://dream-oracle-client-git-main-tgunjal0421s-projects.vercel.app'
   ];
 
 app.use(cors({
