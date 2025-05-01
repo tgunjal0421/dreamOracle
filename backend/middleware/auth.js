@@ -1,36 +1,40 @@
-import { Clerk } from '@clerk/clerk-sdk-node';
+// auth.js
+import { requireAuth as clerkRequireAuth } from '@clerk/express';
 import User from '../models/User.js';
 
-const clerk = new Clerk({ secretKey: process.env.CLERK_SECRET_KEY });
+const requireAuth = clerkRequireAuth(); // Clerk middleware that verifies JWT session
 
-// Middleware to attach user to request
+// Middleware to sync Clerk user with MongoDB and attach to request
 const attachUser = async (req, res, next) => {
   try {
-    if (!req.auth) {
+    const { userId, sessionClaims } = req.auth;
+
+    if (!userId) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
 
-    // Find or create user in our database
-    let user = await User.findOne({ clerkId: req.auth.userId });
-    
+    // Check if user exists in DB
+    let user = await User.findOne({ clerkId: userId });
+
     if (!user) {
-      // Get user details from Clerk
-      const clerkUser = req.auth;
-      
-      // Create new user in our database
+      // Fallbacks if sessionClaims are not present
+      const email = sessionClaims?.email || 'unknown@unknown.com';
+      const firstName = sessionClaims?.firstName || 'User';
+      const lastName = sessionClaims?.lastName || '';
+
       user = await User.create({
-        clerkId: clerkUser.userId,
-        email: clerkUser.email,
-        firstName: clerkUser.firstName,
-        lastName: clerkUser.lastName
+        clerkId: userId,
+        email,
+        firstName,
+        lastName,
       });
     }
 
-    // Update last login
+    // Update last login timestamp
     user.lastLogin = new Date();
     await user.save();
 
-    // Attach user to request
+    // Attach user to request for access in routes
     req.user = user;
     next();
   } catch (error) {
@@ -39,49 +43,4 @@ const attachUser = async (req, res, next) => {
   }
 };
 
-const requireAuth = async (req, res, next) => {
-  try {
-    // Get the session token from the Authorization header
-    const token = req.headers.authorization?.split(' ')[1];
-    
-    if (!token) {
-      return res.status(401).json({ error: 'Authentication required' });
-    }
-
-    // Verify the session token with Clerk
-    const session = await clerk.sessions.verifySession(token);
-    
-    if (!session) {
-      return res.status(401).json({ error: 'Invalid authentication token' });
-    }
-
-    // Get or create user in our database
-    let user = await User.findOne({ clerkId: session.userId });
-    
-    if (!user) {
-      // Get user details from Clerk
-      const clerkUser = await clerk.users.getUser(session.userId);
-      
-      // Create new user in our database
-      user = await User.create({
-        clerkId: session.userId,
-        email: clerkUser.emailAddresses[0]?.emailAddress,
-        firstName: clerkUser.firstName,
-        lastName: clerkUser.lastName
-      });
-    }
-
-    // Attach user to request object
-    req.auth = session;
-    req.user = user;
-    next();
-  } catch (error) {
-    console.error('Auth error:', error);
-    res.status(401).json({ error: 'Authentication failed' });
-  }
-};
-
-module.exports = {
-  requireAuth,
-  attachUser
-};
+export { requireAuth, attachUser };

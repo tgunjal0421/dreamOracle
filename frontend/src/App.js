@@ -41,7 +41,7 @@ const DreamsPage = () => {
     try {
       const token = await getToken();
       console.log('Fetching dreams with token...');
-      const res = await fetch(`${API_BASE_URL}/api/dream/history`, {
+      const res = await fetch(`${API_BASE_URL}/api/interpret/history`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -55,7 +55,7 @@ const DreamsPage = () => {
 
       const data = await res.json();
       console.log('Received dreams:', data);
-      setPastDreams(data.dreams || []);
+      setPastDreams(data || []);
     } catch (err) {
       console.error('Error fetching dreams:', err);
       setError('Failed to fetch dream history');
@@ -69,7 +69,7 @@ const DreamsPage = () => {
       const token = await getToken();
       console.log('Deleting dream with id:', id);
       
-      const res = await fetch(`${API_BASE_URL}/api/dream/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/interpret/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -110,13 +110,13 @@ const DreamsPage = () => {
       const token = await getToken();
       console.log('Submitting dream for interpretation...');
       
-      const response = await fetch(`${API_BASE_URL}/api/dream/interpret`, {
+      const response = await fetch(`${API_BASE_URL}/api/interpret`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ dream_text: trimmedDream })
+        body: JSON.stringify({ dream })
       });
 
       const data = await response.json();

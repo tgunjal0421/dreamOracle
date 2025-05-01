@@ -4,7 +4,6 @@ import cors from 'cors';
 import { Clerk } from '@clerk/clerk-sdk-node';
 import { connectDB } from './config/database.js';
 import { interpretRoutes } from './routes/interpret.js';
-import { dreamRoutes } from './routes/dreamRoutes.js';
 
 dotenv.config();
 
@@ -44,7 +43,6 @@ app.use(express.json());
 
 // Routes
 app.use('/api/interpret', interpretRoutes);
-app.use('/api/dream', dreamRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

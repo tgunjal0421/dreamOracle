@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SignedIn } from '@clerk/clerk-react';
+import { SignedIn, SignOutButton, UserProfile } from '@clerk/clerk-react';
 import { useUser, useClerk } from '@clerk/clerk-react';
 import Modal from '../components/common/Modal';
 import './Settings.css';
@@ -61,16 +61,11 @@ const SettingsContent = () => {
               <div className="action-card">
                 <h3>Sign Out</h3>
                 <p>Sign out from your account on this device.</p>
-                <button onClick={() => signOut()} className="signout-button">
-                  Sign Out
-                </button>
+                <SignOutButton className="signout-button">Sign Out</SignOutButton>
               </div>
               <div className="action-card danger">
-                <h3>Delete Account</h3>
-                <p>Permanently delete your account and all associated data.</p>
-                <button onClick={() => setDeleteModal(true)} className="delete-button">
-                  Delete Account
-                </button>
+                <h3>Manage Account</h3>
+                <UserProfile className="user-profile" />
               </div>
             </div>
           </div>

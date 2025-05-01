@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@clerk/clerk-sdk-node": "^4.13.4",
+    "@clerk/express": "^1.4.11",
     "axios": "^1.6.7",
     "cors": "^2.8.5",
     "csv-parser": "^3.2.0",
@@ -21,7 +22,7 @@
     "express-session": "^1.18.0",
     "mongoose": "^8.1.1",
     "natural": "^8.0.1",
-    "openai": "^4.26.0"
+    "openai": "^4.96.2"
   },
   "devDependencies": {
     "concurrently": "^8.2.1",
