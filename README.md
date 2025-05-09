@@ -7,7 +7,7 @@ DreamOracle is a web-based platform that interprets user-submitted dreams using 
 ## 🔥 Features
 
 - **User Authentication & Authorization** via [Clerk](https://clerk.dev) ensuring secure access.
-- **Dream Interpretation** using a Paraphrasing AI.
+- **Dream Interpretation** using OpenAI API.
 - **MongoDB Atlas** for storing Dream Interpretations and Dream History.
 - User-friendly frontend built with **React.js**.
 - Backend logic powered by **Node.js**.
@@ -36,7 +36,7 @@ DreamOracle is a web-based platform that interprets user-submitted dreams using 
 
 1. **Clerk** handles secure user authentication.
 2. **DreamOracle** takes user dream input and sends it to the backend.
-3. Backend uses a **Paraphraser AI** to generate an interpretation.
+3. Backend uses a **OpenAI API** to generate an interpretation.
 4. Interpretation and history are stored in **MongoDB Atlas**.
 5. Users can explore:
    - Authentication Page.
